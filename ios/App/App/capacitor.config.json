@@ -1,0 +1,8 @@
+{
+  "appId": "com.ram.angular",
+  "appName": "ionic-angular-course",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
