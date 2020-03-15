@@ -1,12 +1,13 @@
-.map {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: transparent;
-    opacity: 0;
-    transition: opacity 150ms ease-in;
-}
-
-.map.visible {
-    opacity: 1;
+.map-modal {
+    .map {
+        background-color: transparent;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        transition: opacity 150ms ease-in;
+        width: 100%;
+        &.visible {
+            opacity: 1;
+        }
+    }
 }

@@ -21,7 +21,7 @@ export interface AuthResponseData {
 })
 export class AuthService implements OnDestroy {
   private _user = new BehaviorSubject<User>(null);
- private activeLogoutTimer; any;
+ private activeLogoutTimer: any;
   get userIsAuthenticated() {
     return this._user.asObservable().pipe(
       map(user => user ? !!user.token : false ));

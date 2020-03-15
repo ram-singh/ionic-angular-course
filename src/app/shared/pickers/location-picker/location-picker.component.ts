@@ -55,7 +55,7 @@ export class LocationPickerComponent implements OnInit {
       });
   }
   private locateUser() {
-    if( !Capacitor.isPluginAvailable('Geolocation')) {
+    if ( !Capacitor.isPluginAvailable('Geolocation')) {
       this.showErrorAlert();
       return;
     }

@@ -31,7 +31,7 @@ export class BookingsPage implements OnInit, OnDestroy {
   }
   onCancelBooking(bookingId: string, slidingEl: IonItemSliding) {
     slidingEl.close();
-    console.log("cancel booking with id:", bookingId);
+    console.log('cancel booking with id:', bookingId);
     this.loadingCtrl.create({message: 'Cancelling..'}).then( loadingEl => {
       loadingEl.present();
       this.bookingService.cancelBooking(bookingId).subscribe(() => loadingEl.dismiss());
