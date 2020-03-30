@@ -20,7 +20,7 @@ interface PlaceData {
   providedIn: 'root'
 })
 export class PlacesService {
-  private _places = new BehaviorSubject<Place[]>([
+  private pPlaces = new BehaviorSubject<Place[]>([
     // new Place(
     //   "p1",
     //   "Manhattan Mansion",
@@ -54,7 +54,7 @@ export class PlacesService {
   ]);
   constructor(private authService: AuthService, private http: HttpClient) {}
   get places() {
-    return this._places.asObservable();
+    return this.pPlaces.asObservable();
   }
   getPlace(id: string) {
     return this.authService.token.pipe(
@@ -111,7 +111,7 @@ export class PlacesService {
         return places;
       }),
       delay(1000),
-      tap(places => this._places.next(places))
+      tap(places => this.pPlaces.next(places))
     );
   }
   uploadImage(image: File) {
@@ -174,10 +174,10 @@ export class PlacesService {
       take(1),
       tap(places => {
         newPlace.id = generatedId;
-        this._places.next(places.concat(newPlace));
+        this.pPlaces.next(places.concat(newPlace));
       })
     );
-    // return this.places.pipe(take(1), delay(1000), tap(places => this._places.next(places.concat(newPlace)) ));
+    // return this.places.pipe(take(1), delay(1000), tap(places => this.pPlaces.next(places.concat(newPlace)) ));
   }
   updatePlace(placeId: string, title: string, description: string) {
     let updatedPlaces: Place[];
@@ -217,7 +217,7 @@ export class PlacesService {
         );
       }),
       tap(() => {
-        return this._places.next(updatedPlaces);
+        return this.pPlaces.next(updatedPlaces);
       })
     );
   }

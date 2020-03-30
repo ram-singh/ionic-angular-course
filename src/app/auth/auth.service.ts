@@ -20,18 +20,18 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
-  private _user = new BehaviorSubject<User>(null);
+  private pUser = new BehaviorSubject<User>(null);
  private activeLogoutTimer: any;
   get userIsAuthenticated() {
-    return this._user.asObservable().pipe(
+    return this.pUser.asObservable().pipe(
       map(user => user ? !!user.token : false ));
   }
 
   get userId() {
-    return this._user.asObservable().pipe(map(user => user ? user.id : null));
+    return this.pUser.asObservable().pipe(map(user => user ? user.id : null));
   }
   get token() {
-    return this._user.asObservable().pipe(map(user => user ? user.token : null));
+    return this.pUser.asObservable().pipe(map(user => user ? user.token : null));
   }
 
   constructor(private http: HttpClient) { }
@@ -53,7 +53,7 @@ export class AuthService implements OnDestroy {
       }),
       tap(user => {
         if (user) {
-          this._user.next(user);
+          this.pUser.next(user);
           this.autoLogout( user.tokenDuration);
         }
       }),
@@ -84,7 +84,7 @@ export class AuthService implements OnDestroy {
     if (this.activeLogoutTimer) {
       clearTimeout(this.activeLogoutTimer);
     }
-    this._user.next(null);
+    this.pUser.next(null);
     Plugins.Storage.remove({key: 'authData'});
   }
 
@@ -99,7 +99,7 @@ export class AuthService implements OnDestroy {
   private setUserData(userData: AuthResponseData) {
     const expirationTime = new Date(new Date().getTime() + (+userData.expiresIn * 1000));
     const user = new User(userData.localId, userData.email, userData.idToken, expirationTime);
-    this._user.next(user);
+    this.pUser.next(user);
     this.autoLogout(user.tokenDuration);
     this.storeAuthData(userData.localId, userData.idToken, expirationTime.toISOString(), userData.email);
   }

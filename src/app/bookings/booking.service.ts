@@ -18,10 +18,10 @@ interface BookingData {
 }
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  private _bookings = new BehaviorSubject<Booking[]>([]);
+  private pBookings = new BehaviorSubject<Booking[]>([]);
   constructor(private authService: AuthService, private http: HttpClient) {}
   get bookings() {
-    return this._bookings.asObservable();
+    return this.pBookings.asObservable();
   }
   getBooking(id: string) {
     return this.bookings.pipe(
@@ -75,7 +75,7 @@ export class BookingService {
         }),
         tap(bookings => {
           console.log('bookings: ', bookings);
-          this._bookings.next(bookings);
+          this.pBookings.next(bookings);
         })
     );
   }
@@ -129,7 +129,7 @@ export class BookingService {
     take(1),
     tap(bookings => {
       newBooking.id = generatedId;
-      this._bookings.next(bookings.concat(newBooking));
+      this.pBookings.next(bookings.concat(newBooking));
     })
     );
   }
@@ -145,7 +145,7 @@ export class BookingService {
       }),
       take(1),
       tap(bookings => {
-        this._bookings.next(bookings.filter(b => b.id !== bookingId));
+        this.pBookings.next(bookings.filter(b => b.id !== bookingId));
       })
     );
   }
