@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "code-coverage": "ng test --code-coverage",
     "sass-lint": "sass-lint -c sass-lint.yml -v -q",
     "sass-lint:fix": "sass-lint-auto-fix",
     "lint:fix": "ng lint --fix",
