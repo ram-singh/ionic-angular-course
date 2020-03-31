@@ -15,7 +15,8 @@
     "sass-lint:fix": "sass-lint-auto-fix",
     "lint:fix": "ng lint --fix",
     "html-lint": "htmllint src/app/**/*.html",
-    "html-init": "htmllint init"
+    "html-init": "htmllint init",
+    "typedoc": "typedoc --options typedoc.json src/app/shared"
   },
   "pre-commit": [
     "lint",
@@ -71,8 +72,13 @@
     "sass-lint-auto-fix": "^0.21.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3",
+    "typedoc": "^0.17.3",
+    "typescript": "^3.8.3",
     "webpack-bundle-analyzer": "^3.6.1"
   },
+  "browserlist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "description": "An Ionic project"
 }

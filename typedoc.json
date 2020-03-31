@@ -1,0 +1,18 @@
+{
+    "mode": "file",
+    "out": "docs",
+    "theme": "default",
+    "externalPattern": [ "/**/*.spec.ts","/**/index.ts", "/**/*.module.ts", "/**/*.model.ts", "/**/*.service.ts"],
+    "excludeExternals": "true",
+    "ignoreCompilerErrors": "true",
+    "experimentalDecorators": "true",
+    "emitDecoratorMetadata": "true",
+    "target": "ES5",
+    "moduleResolution": "node",
+    "preserveConstEnums": "true",
+    "stripInternal": "true",
+    "suppressExcessPropertyErrors": "true",
+    "suppressImplicitAnyIndexErrors": "true",
+    "module": "commonjs",
+    "name": "Ionic Angular Course"
+  }

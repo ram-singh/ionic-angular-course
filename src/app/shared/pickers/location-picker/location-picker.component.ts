@@ -16,6 +16,9 @@ import { PlaceLocation } from 'src/app/places/location.model';
   templateUrl: './location-picker.component.html',
   styleUrls: ['./location-picker.component.scss']
 })
+/**
+ * This component will be used for location picker.
+ */
 export class LocationPickerComponent implements OnInit {
   @Output() locationPick = new EventEmitter<PlaceLocation>();
   @Input() showPreview = false;
